@@ -1,0 +1,121 @@
+<mxfile host="app.diagrams.net" modified="2023-06-16T11:48:02.708Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="aGQhC-T2IFSUNs6fTnCL" version="21.4.0" type="device">
+  <diagram name="Page 2" id="0">
+    <mxGraphModel dx="1050" dy="573" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="4" style="graphMlID=n2;gradientDirection=east;shape=mxgraph.flowchart.start_1;fillColor=#ffffff;gradientColor=#ffffff;strokeColor=#000000;strokeWidth=1.0" parent="1" vertex="1">
+          <mxGeometry x="110" y="50" width="186" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="0.2.0" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Посмотреть&lt;br&gt;информацию о себе&lt;/font&gt;" style="text;html=1;spacing=0;align=center;fontFamily=dialog;fontSize=12;fontStyle=0;=center;fontColor=#000000;verticalAlign=bottom" parent="4" vertex="1">
+          <mxGeometry x="27.4638671875" y="27.03125" width="131.072265625" height="31.9375" as="geometry" />
+        </mxCell>
+        <mxCell id="5" style="graphMlID=n3;gradientDirection=east;shape=mxgraph.flowchart.start_1;fillColor=#ffffff;gradientColor=#ffffff;strokeColor=#000000;strokeWidth=1.0" parent="1" vertex="1">
+          <mxGeometry x="639" y="50" width="186" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="0.3.0" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Добавить животное&lt;br&gt;к себе&lt;/font&gt;" style="text;html=1;spacing=0;align=center;fontFamily=dialog;fontSize=12;fontStyle=0;=center;fontColor=#000000;verticalAlign=bottom" parent="5" vertex="1">
+          <mxGeometry x="28.521484375" y="27.03125" width="128.95703125" height="31.9375" as="geometry" />
+        </mxCell>
+        <mxCell id="6" style="graphMlID=n4;gradientDirection=east;shape=mxgraph.flowchart.start_1;fillColor=#ffffff;gradientColor=#ffffff;strokeColor=#000000;strokeWidth=1.0" parent="1" vertex="1">
+          <mxGeometry x="639" y="150" width="186" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="0.4.0" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Перестать быть&lt;br&gt;&amp;nbsp;куратором животного&lt;/span&gt;" style="text;html=1;spacing=0;align=center;fontFamily=dialog;fontSize=12;fontStyle=0;=center;fontColor=#000000;verticalAlign=bottom" parent="6" vertex="1">
+          <mxGeometry x="43.9228515625" y="27.03125" width="98.154296875" height="31.9375" as="geometry" />
+        </mxCell>
+        <mxCell id="7" style="graphMlID=n5;gradientDirection=east;shape=mxgraph.flowchart.start_1;fillColor=#ffffff;gradientColor=#ffffff;strokeColor=#000000;strokeWidth=1.0" parent="1" vertex="1">
+          <mxGeometry x="110" y="150" width="186" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="0.5.0" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Посмотреть&lt;br&gt;информацию о животном&lt;/font&gt;" style="text;html=1;spacing=0;align=center;fontFamily=dialog;fontSize=12;fontStyle=0;=center;fontColor=#000000;verticalAlign=bottom" parent="7" vertex="1">
+          <mxGeometry x="48.9296875" y="27.03125" width="88.140625" height="31.9375" as="geometry" />
+        </mxCell>
+        <mxCell id="8" style="graphMlID=n6;gradientDirection=east;shape=mxgraph.flowchart.start_1;fillColor=#ffffff;gradientColor=#ffffff;strokeColor=#000000;strokeWidth=1.0" parent="1" vertex="1">
+          <mxGeometry x="641" y="351" width="186" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="0.6.0" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Вывести все&lt;br&gt;&lt;/span&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;приюты&lt;/font&gt;" style="text;html=1;spacing=0;align=center;fontFamily=dialog;fontSize=12;fontStyle=0;=center;fontColor=#000000;verticalAlign=bottom" parent="8" vertex="1">
+          <mxGeometry x="53.294921875" y="17.046875" width="79.41015625" height="45.90625" as="geometry" />
+        </mxCell>
+        <mxCell id="9" style="graphMlID=n7;gradientDirection=east;shape=mxgraph.flowchart.start_1;fillColor=#ffffff;gradientColor=#ffffff;strokeColor=#000000;strokeWidth=1.0" parent="1" vertex="1">
+          <mxGeometry x="641" y="250" width="186" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="0.7.0" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Посмотреть&lt;br&gt;информацию о приюте&lt;/font&gt;" style="text;html=1;spacing=0;align=center;fontFamily=dialog;fontSize=12;fontStyle=0;=center;fontColor=#000000;verticalAlign=bottom" parent="9" vertex="1">
+          <mxGeometry x="53.294921875" y="9.966875" width="79.41015625" height="45.90625" as="geometry" />
+        </mxCell>
+        <mxCell id="10" style="graphMlID=n8;gradientDirection=east;shape=mxgraph.flowchart.start_1;fillColor=#ffffff;gradientColor=#ffffff;strokeColor=#000000;strokeWidth=1.0" parent="1" vertex="1">
+          <mxGeometry x="110" y="250" width="186" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="0.8.0" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Изменить&lt;br&gt;информацию о животном&lt;/font&gt;" style="text;html=1;spacing=0;align=center;fontFamily=dialog;fontSize=12;fontStyle=0;=center;fontColor=#000000;verticalAlign=bottom" parent="10" vertex="1">
+          <mxGeometry x="60.25" y="9.546875" width="65.5" height="45.90625" as="geometry" />
+        </mxCell>
+        <mxCell id="5csLgl6qisGbaf3oR21y-17" value="Куратор" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="430" y="261" width="50" height="92.5" as="geometry" />
+        </mxCell>
+        <mxCell id="vZAdzexXDlPwYwt0Q9mS-17" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="290" as="sourcePoint" />
+            <mxPoint x="800" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vZAdzexXDlPwYwt0Q9mS-18" value="" style="endArrow=classic;html=1;rounded=0;entryX=-0.01;entryY=0.6;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="490" y="290" as="sourcePoint" />
+            <mxPoint x="800" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vZAdzexXDlPwYwt0Q9mS-19" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="490" y="290" as="sourcePoint" />
+            <mxPoint x="800" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vZAdzexXDlPwYwt0Q9mS-20" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="490" y="290" as="sourcePoint" />
+            <mxPoint x="800" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vZAdzexXDlPwYwt0Q9mS-21" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="490" y="290" as="sourcePoint" />
+            <mxPoint x="800" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vZAdzexXDlPwYwt0Q9mS-22" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="290" as="sourcePoint" />
+            <mxPoint x="800" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vZAdzexXDlPwYwt0Q9mS-23" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="10" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="290" as="sourcePoint" />
+            <mxPoint x="800" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vZAdzexXDlPwYwt0Q9mS-24" style="graphMlID=n8;gradientDirection=east;shape=mxgraph.flowchart.start_1;fillColor=#ffffff;gradientColor=#ffffff;strokeColor=#000000;strokeWidth=1.0" parent="1" vertex="1">
+          <mxGeometry x="110" y="351" width="186" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="vZAdzexXDlPwYwt0Q9mS-25" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Вывести своих&lt;br&gt;&amp;nbsp;животных&lt;/span&gt;" style="text;html=1;spacing=0;align=center;fontFamily=dialog;fontSize=12;fontStyle=0;=center;fontColor=#000000;verticalAlign=bottom" parent="vZAdzexXDlPwYwt0Q9mS-24" vertex="1">
+          <mxGeometry x="60.25" y="13.546875" width="65.5" height="45.90625" as="geometry" />
+        </mxCell>
+        <mxCell id="vZAdzexXDlPwYwt0Q9mS-27" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="vZAdzexXDlPwYwt0Q9mS-24" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="290" as="sourcePoint" />
+            <mxPoint x="651" y="303" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vZAdzexXDlPwYwt0Q9mS-29" style="graphMlID=n8;gradientDirection=east;shape=mxgraph.flowchart.start_1;fillColor=#ffffff;gradientColor=#ffffff;strokeColor=#000000;strokeWidth=1.0" parent="1" vertex="1">
+          <mxGeometry x="110" y="460" width="186" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="vZAdzexXDlPwYwt0Q9mS-30" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Вывести всех&lt;br&gt;&amp;nbsp;животных&lt;/span&gt;" style="text;html=1;spacing=0;align=center;fontFamily=dialog;fontSize=12;fontStyle=0;=center;fontColor=#000000;verticalAlign=bottom" parent="vZAdzexXDlPwYwt0Q9mS-29" vertex="1">
+          <mxGeometry x="60.25" y="13.546875" width="65.5" height="45.90625" as="geometry" />
+        </mxCell>
+        <mxCell id="vZAdzexXDlPwYwt0Q9mS-31" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="vZAdzexXDlPwYwt0Q9mS-29" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="290" as="sourcePoint" />
+            <mxPoint x="306" y="404" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
