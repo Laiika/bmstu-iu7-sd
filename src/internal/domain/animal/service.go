@@ -6,16 +6,17 @@ type AnimalService struct {
 	repo IAnimalRepo
 }
 
-func NewPatientService(repo IAnimalRepo) *AnimalService {
+func NewAnimalService(repo IAnimalRepo) *AnimalService {
 	return &AnimalService{
 		repo: repo,
 	}
 }
+
 func (r *AnimalService) GetById(ctx context.Context, id int32) (*Animal, error) {
 	return r.repo.GetById(ctx, id)
 }
-func (r *AnimalService) List(ctx context.Context) (Animals, error) {
-	return r.repo.List(ctx)
+func (r *AnimalService) GetAll(ctx context.Context) (Animals, error) {
+	return r.repo.GetAll(ctx)
 }
 func (r *AnimalService) Create(ctx context.Context, dto *CreateAnimal) (*Animal, error) {
 	return r.repo.Create(ctx, dto)

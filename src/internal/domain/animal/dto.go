@@ -4,7 +4,7 @@ type Animal struct {
 	Id        int32
 	Name      string
 	Age       int32
-	Height    int32
+	Height    float32
 	Weight    float32
 	ShelterId int32
 	Type      string
@@ -16,7 +16,7 @@ type Animals []*Animal
 type CreateAnimal struct {
 	Name      string
 	Age       int32
-	Height    int32
+	Height    float32
 	Weight    float32
 	ShelterId int32
 	Type      string
@@ -26,7 +26,7 @@ type CreateAnimal struct {
 type UpdateAnimal struct {
 	Name      string
 	Age       int32
-	Height    int32
+	Height    float32
 	Weight    float32
 	ShelterId int32
 	Type      string
