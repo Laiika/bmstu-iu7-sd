@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-06-16T15:36:02.640Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="65umr6-1zb2FeIGZ5nb6" version="21.4.0" type="device">
+<mxfile host="app.diagrams.net" modified="2023-06-19T16:03:25.779Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="XlDsnvymEJf6Npk3Id5g" version="21.5.0" type="device">
   <diagram id="e6X06jenNM8Ow558dpSg" name="Page-1">
-    <mxGraphModel dx="1900" dy="573" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1900" dy="515" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -135,7 +135,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="72" value="IAnimalRepo" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="1" vertex="1">
-          <mxGeometry x="100" y="650" width="160" height="161" as="geometry">
+          <mxGeometry x="100" y="650" width="160" height="188" as="geometry">
             <mxRectangle x="220" y="120" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -154,8 +154,11 @@
         <mxCell id="77" value="+ GetAll ()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="72" vertex="1">
           <mxGeometry y="134" width="160" height="27" as="geometry" />
         </mxCell>
+        <mxCell id="cH7xtkZahAQDx5wF-E2J-87" value="+ GetCrtrAll ()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="72">
+          <mxGeometry y="161" width="160" height="27" as="geometry" />
+        </mxCell>
         <mxCell id="79" value="AnimalRepo" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="1" vertex="1">
-          <mxGeometry x="100" y="890" width="160" height="161" as="geometry">
+          <mxGeometry x="100" y="890" width="160" height="188" as="geometry">
             <mxRectangle x="220" y="120" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -173,6 +176,9 @@
         </mxCell>
         <mxCell id="84" value="+ GetAll ()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="79" vertex="1">
           <mxGeometry y="134" width="160" height="27" as="geometry" />
+        </mxCell>
+        <mxCell id="cH7xtkZahAQDx5wF-E2J-88" value="+ GetCrtrAll()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="79">
+          <mxGeometry y="161" width="160" height="27" as="geometry" />
         </mxCell>
         <mxCell id="86" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="79" target="72" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">

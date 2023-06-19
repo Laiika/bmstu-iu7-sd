@@ -1,12 +1,12 @@
 package animal
 
 type Animal struct {
-	Id        int32
+	Id        int
 	Name      string
-	Age       int32
-	Height    float32
-	Weight    float32
-	ShelterId int32
+	Age       int
+	Height    float64
+	Weight    float64
+	ShelterId int
 	Type      string
 	Sex       string
 }
@@ -15,20 +15,20 @@ type Animals []*Animal
 
 type CreateAnimal struct {
 	Name      string
-	Age       int32
-	Height    float32
-	Weight    float32
-	ShelterId int32
+	Age       int
+	Height    float64
+	Weight    float64
+	ShelterId int
 	Type      string
 	Sex       string
 }
 
 type UpdateAnimal struct {
 	Name      string
-	Age       int32
-	Height    float32
-	Weight    float32
-	ShelterId int32
+	Age       int
+	Height    float64
+	Weight    float64
+	ShelterId int
 	Type      string
 	Sex       string
 }

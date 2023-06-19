@@ -13,16 +13,16 @@ func TestAnimalService_GetById(t *testing.T) {
 	repo := NewMockIAnimalRepo(ctl)
 	service := NewAnimalService(repo)
 
-	var id int32 = 11
+	id := 11
 	expectedAnimal := &Animal{
 		Id:        id,
-		Name:      "Bobik",
+		Name:      "Бобик",
 		Age:       10,
 		Height:    3.4,
 		Weight:    5.5,
 		ShelterId: 10,
-		Type:      "dog",
-		Sex:       "male",
+		Type:      "собака",
+		Sex:       "мужской",
 	}
 
 	repo.EXPECT().GetById(gomock.Any(), id).Return(expectedAnimal, nil)
@@ -40,28 +40,64 @@ func TestAnimalService_GetAll(t *testing.T) {
 	expectedAnimals := Animals{
 		&Animal{
 			Id:        1,
-			Name:      "Bobik",
+			Name:      "Бобик",
 			Age:       10,
 			Height:    3.4,
 			Weight:    5.5,
 			ShelterId: 10,
-			Type:      "dog",
-			Sex:       "male",
+			Type:      "собака",
+			Sex:       "мужской",
 		},
 		&Animal{
-			Id:        1,
-			Name:      "Sharik",
+			Id:        2,
+			Name:      "Шарик",
 			Age:       6,
 			Height:    4.4,
 			Weight:    6.5,
 			ShelterId: 10,
-			Type:      "dog",
-			Sex:       "male",
+			Type:      "собака",
+			Sex:       "мужской",
 		},
 	}
 
 	repo.EXPECT().GetAll(gomock.Any()).Return(expectedAnimals, nil)
 	animals, err := service.GetAll(context.Background())
+	assert.NoError(t, err)
+	assert.Equal(t, expectedAnimals, animals)
+}
+
+func TestAnimalService_GetCrtrAll(t *testing.T) {
+	ctl := gomock.NewController(t)
+	defer ctl.Finish()
+	repo := NewMockIAnimalRepo(ctl)
+	service := NewAnimalService(repo)
+
+	expectedAnimals := Animals{
+		&Animal{
+			Id:        1,
+			Name:      "Бобик",
+			Age:       10,
+			Height:    3.4,
+			Weight:    5.5,
+			ShelterId: 10,
+			Type:      "собака",
+			Sex:       "мужской",
+		},
+		&Animal{
+			Id:        2,
+			Name:      "Шарик",
+			Age:       6,
+			Height:    4.4,
+			Weight:    6.5,
+			ShelterId: 10,
+			Type:      "собака",
+			Sex:       "мужской",
+		},
+	}
+	crtr_id := 15
+
+	repo.EXPECT().GetCrtrAll(gomock.Any(), crtr_id).Return(expectedAnimals, nil)
+	animals, err := service.GetCrtrAll(context.Background(), crtr_id)
 	assert.NoError(t, err)
 	assert.Equal(t, expectedAnimals, animals)
 }
@@ -73,25 +109,24 @@ func TestAnimalService_Create(t *testing.T) {
 	service := NewAnimalService(repo)
 
 	dto := &CreateAnimal{
-		Name:      "Bobik",
+		Name:      "Бобик",
 		Age:       10,
 		Height:    3.4,
 		Weight:    5.5,
 		ShelterId: 10,
-		Type:      "dog",
-		Sex:       "male",
+		Type:      "собака",
+		Sex:       "мужской",
 	}
 
-	var id int32 = 1
 	expectedAnimal := &Animal{
-		Id:        id,
-		Name:      "Bobik",
+		Id:        1,
+		Name:      "Бобик",
 		Age:       10,
 		Height:    3.4,
 		Weight:    5.5,
 		ShelterId: 10,
-		Type:      "dog",
-		Sex:       "male",
+		Type:      "собака",
+		Sex:       "мужской",
 	}
 
 	repo.EXPECT().Create(gomock.Any(), dto).Return(expectedAnimal, nil)
@@ -107,25 +142,25 @@ func TestAnimalService_Update(t *testing.T) {
 	service := NewAnimalService(repo)
 
 	dto := &UpdateAnimal{
-		Name:      "Bobik",
+		Name:      "Бобик",
 		Age:       10,
 		Height:    3.4,
 		Weight:    5.5,
 		ShelterId: 10,
-		Type:      "dog",
-		Sex:       "male",
+		Type:      "собака",
+		Sex:       "мужской",
 	}
 
-	var id int32 = 1
+	id := 1
 	expectedAnimal := &Animal{
 		Id:        id,
-		Name:      "Bobik",
+		Name:      "Бобик",
 		Age:       10,
 		Height:    3.4,
 		Weight:    5.5,
 		ShelterId: 10,
-		Type:      "dog",
-		Sex:       "male",
+		Type:      "собака",
+		Sex:       "мужской",
 	}
 
 	repo.EXPECT().Update(gomock.Any(), id, dto).Return(expectedAnimal, nil)
@@ -140,7 +175,7 @@ func TestAnimalService_Delete(t *testing.T) {
 	repo := NewMockIAnimalRepo(ctl)
 	service := NewAnimalService(repo)
 
-	var id int32 = 1
+	id := 1
 	repo.EXPECT().Delete(gomock.Any(), id).Return(nil)
 	err := service.Delete(context.Background(), id)
 	assert.NoError(t, err)
