@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-06-16T11:48:02.708Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="aGQhC-T2IFSUNs6fTnCL" version="21.4.0" type="device">
+<mxfile host="app.diagrams.net" modified="2023-06-19T15:15:31.281Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="IQfupk8mRD3ejzuZNftQ" version="21.5.0" type="device">
   <diagram name="Page 2" id="0">
-    <mxGraphModel dx="1050" dy="573" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1050" dy="515" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -43,7 +43,7 @@
         <mxCell id="10" style="graphMlID=n8;gradientDirection=east;shape=mxgraph.flowchart.start_1;fillColor=#ffffff;gradientColor=#ffffff;strokeColor=#000000;strokeWidth=1.0" parent="1" vertex="1">
           <mxGeometry x="110" y="250" width="186" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="0.8.0" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Изменить&lt;br&gt;информацию о животном&lt;/font&gt;" style="text;html=1;spacing=0;align=center;fontFamily=dialog;fontSize=12;fontStyle=0;=center;fontColor=#000000;verticalAlign=bottom" parent="10" vertex="1">
+        <mxCell id="0.8.0" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Посмотреть&lt;br&gt;информацию о закупке&lt;/font&gt;" style="text;html=1;spacing=0;align=center;fontFamily=dialog;fontSize=12;fontStyle=0;=center;fontColor=#000000;verticalAlign=bottom" parent="10" vertex="1">
           <mxGeometry x="60.25" y="9.546875" width="65.5" height="45.90625" as="geometry" />
         </mxCell>
         <mxCell id="5csLgl6qisGbaf3oR21y-17" value="Куратор" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=14;" parent="1" vertex="1">
