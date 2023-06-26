@@ -22,7 +22,7 @@ func TestAnimalService_GetById(t *testing.T) {
 		Weight:    5.5,
 		ShelterId: 10,
 		Type:      "собака",
-		Sex:       "мужской",
+		Gender:    "мужской",
 	}
 
 	repo.EXPECT().GetById(gomock.Any(), id).Return(expectedAnimal, nil)
@@ -46,7 +46,7 @@ func TestAnimalService_GetAll(t *testing.T) {
 			Weight:    5.5,
 			ShelterId: 10,
 			Type:      "собака",
-			Sex:       "мужской",
+			Gender:    "мужской",
 		},
 		&Animal{
 			Id:        2,
@@ -56,7 +56,7 @@ func TestAnimalService_GetAll(t *testing.T) {
 			Weight:    6.5,
 			ShelterId: 10,
 			Type:      "собака",
-			Sex:       "мужской",
+			Gender:    "мужской",
 		},
 	}
 
@@ -81,7 +81,7 @@ func TestAnimalService_GetCrtrAll(t *testing.T) {
 			Weight:    5.5,
 			ShelterId: 10,
 			Type:      "собака",
-			Sex:       "мужской",
+			Gender:    "мужской",
 		},
 		&Animal{
 			Id:        2,
@@ -91,13 +91,13 @@ func TestAnimalService_GetCrtrAll(t *testing.T) {
 			Weight:    6.5,
 			ShelterId: 10,
 			Type:      "собака",
-			Sex:       "мужской",
+			Gender:    "мужской",
 		},
 	}
-	crtr_id := 15
+	crtrId := 15
 
-	repo.EXPECT().GetCrtrAll(gomock.Any(), crtr_id).Return(expectedAnimals, nil)
-	animals, err := service.GetCrtrAll(context.Background(), crtr_id)
+	repo.EXPECT().GetCrtrAll(gomock.Any(), crtrId).Return(expectedAnimals, nil)
+	animals, err := service.GetCrtrAll(context.Background(), crtrId)
 	assert.NoError(t, err)
 	assert.Equal(t, expectedAnimals, animals)
 }
@@ -115,7 +115,7 @@ func TestAnimalService_Create(t *testing.T) {
 		Weight:    5.5,
 		ShelterId: 10,
 		Type:      "собака",
-		Sex:       "мужской",
+		Gender:    "мужской",
 	}
 
 	expectedAnimal := &Animal{
@@ -126,7 +126,7 @@ func TestAnimalService_Create(t *testing.T) {
 		Weight:    5.5,
 		ShelterId: 10,
 		Type:      "собака",
-		Sex:       "мужской",
+		Gender:    "мужской",
 	}
 
 	repo.EXPECT().Create(gomock.Any(), dto).Return(expectedAnimal, nil)
@@ -148,7 +148,7 @@ func TestAnimalService_Update(t *testing.T) {
 		Weight:    5.5,
 		ShelterId: 10,
 		Type:      "собака",
-		Sex:       "мужской",
+		Gender:    "мужской",
 	}
 
 	id := 1
@@ -160,7 +160,7 @@ func TestAnimalService_Update(t *testing.T) {
 		Weight:    5.5,
 		ShelterId: 10,
 		Type:      "собака",
-		Sex:       "мужской",
+		Gender:    "мужской",
 	}
 
 	repo.EXPECT().Update(gomock.Any(), id, dto).Return(expectedAnimal, nil)

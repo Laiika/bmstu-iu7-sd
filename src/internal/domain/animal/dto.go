@@ -8,7 +8,7 @@ type Animal struct {
 	Weight    float64
 	ShelterId int
 	Type      string
-	Sex       string
+	Gender    string
 }
 
 type Animals []*Animal
@@ -20,7 +20,7 @@ type CreateAnimal struct {
 	Weight    float64
 	ShelterId int
 	Type      string
-	Sex       string
+	Gender    string
 }
 
 type UpdateAnimal struct {
@@ -30,5 +30,5 @@ type UpdateAnimal struct {
 	Weight    float64
 	ShelterId int
 	Type      string
-	Sex       string
+	Gender    string
 }
