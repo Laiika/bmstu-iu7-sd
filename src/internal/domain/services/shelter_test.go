@@ -1,20 +1,23 @@
-package shelter
+package services
 
 import (
 	"context"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
+	"sd/internal/domain/dto"
+	"sd/internal/domain/entities"
+	"sd/internal/domain/services/mocks"
 	"testing"
 )
 
 func TestShelterService_GetById(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIShelterRepo(ctl)
+	repo := mocks.NewMockIShelterRepo(ctl)
 	service := NewShelterService(repo)
 
 	id := 11
-	expectedShelter := &Shelter{
+	expectedShelter := &entities.Shelter{
 		Id:     id,
 		Street: "Первомайская",
 		House:  10,
@@ -29,16 +32,16 @@ func TestShelterService_GetById(t *testing.T) {
 func TestShelterService_GetAll(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIShelterRepo(ctl)
+	repo := mocks.NewMockIShelterRepo(ctl)
 	service := NewShelterService(repo)
 
-	expectedShelters := Shelters{
-		&Shelter{
+	expectedShelters := entities.Shelters{
+		&entities.Shelter{
 			Id:     1,
 			Street: "Первомайская",
 			House:  10,
 		},
-		&Shelter{
+		&entities.Shelter{
 			Id:     2,
 			Street: "Анникова",
 			House:  11,
@@ -54,54 +57,40 @@ func TestShelterService_GetAll(t *testing.T) {
 func TestShelterService_Create(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIShelterRepo(ctl)
+	repo := mocks.NewMockIShelterRepo(ctl)
 	service := NewShelterService(repo)
 
-	dto := &CreateShelter{
+	dto := &dto.CreateShelter{
 		Street: "Первомайская",
 		House:  10,
 	}
 
-	expectedShelter := &Shelter{
-		Id:     1,
-		Street: "Первомайская",
-		House:  10,
-	}
-
-	repo.EXPECT().Create(gomock.Any(), dto).Return(expectedShelter, nil)
-	shelter, err := service.Create(context.Background(), dto)
+	repo.EXPECT().Create(gomock.Any(), dto).Return(nil)
+	err := service.Create(context.Background(), dto)
 	assert.NoError(t, err)
-	assert.Equal(t, expectedShelter, shelter)
 }
 
 func TestShelterService_Update(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIShelterRepo(ctl)
+	repo := mocks.NewMockIShelterRepo(ctl)
 	service := NewShelterService(repo)
 
-	dto := &UpdateShelter{
+	dto := &dto.UpdateShelter{
 		Street: "Первомайская",
 		House:  10,
 	}
-
 	id := 1
-	expectedShelter := &Shelter{
-		Id:     id,
-		Street: "Первомайская",
-		House:  10,
-	}
 
-	repo.EXPECT().Update(gomock.Any(), id, dto).Return(expectedShelter, nil)
-	shelter, err := service.Update(context.Background(), id, dto)
+	repo.EXPECT().Update(gomock.Any(), id, dto).Return(nil)
+	err := service.Update(context.Background(), id, dto)
 	assert.NoError(t, err)
-	assert.Equal(t, expectedShelter, shelter)
 }
 
 func TestShelterService_Delete(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIShelterRepo(ctl)
+	repo := mocks.NewMockIShelterRepo(ctl)
 	service := NewShelterService(repo)
 
 	id := 1

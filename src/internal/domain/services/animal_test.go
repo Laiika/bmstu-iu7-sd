@@ -1,20 +1,23 @@
-package animal
+package services
 
 import (
 	"context"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
+	"sd/internal/domain/dto"
+	"sd/internal/domain/entities"
+	"sd/internal/domain/services/mocks"
 	"testing"
 )
 
 func TestAnimalService_GetById(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIAnimalRepo(ctl)
+	repo := mocks.NewMockIAnimalRepo(ctl)
 	service := NewAnimalService(repo)
 
 	id := 11
-	expectedAnimal := &Animal{
+	expectedAnimal := &entities.Animal{
 		Id:        id,
 		Name:      "Бобик",
 		Age:       10,
@@ -34,11 +37,11 @@ func TestAnimalService_GetById(t *testing.T) {
 func TestAnimalService_GetAll(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIAnimalRepo(ctl)
+	repo := mocks.NewMockIAnimalRepo(ctl)
 	service := NewAnimalService(repo)
 
-	expectedAnimals := Animals{
-		&Animal{
+	expectedAnimals := entities.Animals{
+		&entities.Animal{
 			Id:        1,
 			Name:      "Бобик",
 			Age:       10,
@@ -48,7 +51,7 @@ func TestAnimalService_GetAll(t *testing.T) {
 			Type:      "собака",
 			Gender:    "мужской",
 		},
-		&Animal{
+		&entities.Animal{
 			Id:        2,
 			Name:      "Шарик",
 			Age:       6,
@@ -69,11 +72,11 @@ func TestAnimalService_GetAll(t *testing.T) {
 func TestAnimalService_GetCrtrAll(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIAnimalRepo(ctl)
+	repo := mocks.NewMockIAnimalRepo(ctl)
 	service := NewAnimalService(repo)
 
-	expectedAnimals := Animals{
-		&Animal{
+	expectedAnimals := entities.Animals{
+		&entities.Animal{
 			Id:        1,
 			Name:      "Бобик",
 			Age:       10,
@@ -83,7 +86,7 @@ func TestAnimalService_GetCrtrAll(t *testing.T) {
 			Type:      "собака",
 			Gender:    "мужской",
 		},
-		&Animal{
+		&entities.Animal{
 			Id:        2,
 			Name:      "Шарик",
 			Age:       6,
@@ -105,10 +108,10 @@ func TestAnimalService_GetCrtrAll(t *testing.T) {
 func TestAnimalService_Create(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIAnimalRepo(ctl)
+	repo := mocks.NewMockIAnimalRepo(ctl)
 	service := NewAnimalService(repo)
 
-	dto := &CreateAnimal{
+	dto := &dto.CreateAnimal{
 		Name:      "Бобик",
 		Age:       10,
 		Height:    3.4,
@@ -118,30 +121,18 @@ func TestAnimalService_Create(t *testing.T) {
 		Gender:    "мужской",
 	}
 
-	expectedAnimal := &Animal{
-		Id:        1,
-		Name:      "Бобик",
-		Age:       10,
-		Height:    3.4,
-		Weight:    5.5,
-		ShelterId: 10,
-		Type:      "собака",
-		Gender:    "мужской",
-	}
-
-	repo.EXPECT().Create(gomock.Any(), dto).Return(expectedAnimal, nil)
-	animal, err := service.Create(context.Background(), dto)
+	repo.EXPECT().Create(gomock.Any(), dto).Return(nil)
+	err := service.Create(context.Background(), dto)
 	assert.NoError(t, err)
-	assert.Equal(t, expectedAnimal, animal)
 }
 
 func TestAnimalService_Update(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIAnimalRepo(ctl)
+	repo := mocks.NewMockIAnimalRepo(ctl)
 	service := NewAnimalService(repo)
 
-	dto := &UpdateAnimal{
+	dto := &dto.UpdateAnimal{
 		Name:      "Бобик",
 		Age:       10,
 		Height:    3.4,
@@ -150,29 +141,17 @@ func TestAnimalService_Update(t *testing.T) {
 		Type:      "собака",
 		Gender:    "мужской",
 	}
-
 	id := 1
-	expectedAnimal := &Animal{
-		Id:        id,
-		Name:      "Бобик",
-		Age:       10,
-		Height:    3.4,
-		Weight:    5.5,
-		ShelterId: 10,
-		Type:      "собака",
-		Gender:    "мужской",
-	}
 
-	repo.EXPECT().Update(gomock.Any(), id, dto).Return(expectedAnimal, nil)
-	animal, err := service.Update(context.Background(), id, dto)
+	repo.EXPECT().Update(gomock.Any(), id, dto).Return(nil)
+	err := service.Update(context.Background(), id, dto)
 	assert.NoError(t, err)
-	assert.Equal(t, expectedAnimal, animal)
 }
 
 func TestAnimalService_Delete(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIAnimalRepo(ctl)
+	repo := mocks.NewMockIAnimalRepo(ctl)
 	service := NewAnimalService(repo)
 
 	id := 1

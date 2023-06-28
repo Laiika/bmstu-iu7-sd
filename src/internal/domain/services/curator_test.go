@@ -1,20 +1,23 @@
-package curator
+package services
 
 import (
 	"context"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
+	"sd/internal/domain/dto"
+	"sd/internal/domain/entities"
+	"sd/internal/domain/services/mocks"
 	"testing"
 )
 
 func TestCuratorService_GetById(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockICuratorRepo(ctl)
+	repo := mocks.NewMockICuratorRepo(ctl)
 	service := NewCuratorService(repo)
 
 	id := 11
-	expectedCurator := &Curator{
+	expectedCurator := &entities.Curator{
 		Id:          id,
 		ChatId:      "85085228",
 		Name:        "Арина",
@@ -31,18 +34,18 @@ func TestCuratorService_GetById(t *testing.T) {
 func TestCuratorService_GetAll(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockICuratorRepo(ctl)
+	repo := mocks.NewMockICuratorRepo(ctl)
 	service := NewCuratorService(repo)
 
-	expectedCurators := Curators{
-		&Curator{
+	expectedCurators := entities.Curators{
+		&entities.Curator{
 			Id:          1,
 			ChatId:      "85085228",
 			Name:        "Арина",
 			Surname:     "Иванова",
 			PhoneNumber: "+79891143454",
 		},
-		&Curator{
+		&entities.Curator{
 			Id:          2,
 			ChatId:      "85033128",
 			Name:        "Анастасия",
@@ -60,62 +63,44 @@ func TestCuratorService_GetAll(t *testing.T) {
 func TestCuratorService_Create(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockICuratorRepo(ctl)
+	repo := mocks.NewMockICuratorRepo(ctl)
 	service := NewCuratorService(repo)
 
-	dto := &CreateCurator{
+	dto := &dto.CreateCurator{
 		ChatId:      "85085228",
 		Name:        "Арина",
 		Surname:     "Иванова",
 		PhoneNumber: "+79891143454",
 	}
 
-	expectedCurator := &Curator{
-		Id:          1,
-		ChatId:      "85085228",
-		Name:        "Арина",
-		Surname:     "Иванова",
-		PhoneNumber: "+79891143454",
-	}
-
-	repo.EXPECT().Create(gomock.Any(), dto).Return(expectedCurator, nil)
-	curator, err := service.Create(context.Background(), dto)
+	repo.EXPECT().Create(gomock.Any(), dto).Return(nil)
+	err := service.Create(context.Background(), dto)
 	assert.NoError(t, err)
-	assert.Equal(t, expectedCurator, curator)
 }
 
 func TestCuratorService_Update(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockICuratorRepo(ctl)
+	repo := mocks.NewMockICuratorRepo(ctl)
 	service := NewCuratorService(repo)
 
-	dto := &UpdateCurator{
+	dto := &dto.UpdateCurator{
 		ChatId:      "85085228",
 		Name:        "Арина",
 		Surname:     "Иванова",
 		PhoneNumber: "+79891143454",
 	}
-
 	id := 1
-	expectedCurator := &Curator{
-		Id:          id,
-		ChatId:      "85085228",
-		Name:        "Арина",
-		Surname:     "Иванова",
-		PhoneNumber: "+79891143454",
-	}
 
-	repo.EXPECT().Update(gomock.Any(), id, dto).Return(expectedCurator, nil)
-	curator, err := service.Update(context.Background(), id, dto)
+	repo.EXPECT().Update(gomock.Any(), id, dto).Return(nil)
+	err := service.Update(context.Background(), id, dto)
 	assert.NoError(t, err)
-	assert.Equal(t, expectedCurator, curator)
 }
 
 func TestCuratorService_Delete(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockICuratorRepo(ctl)
+	repo := mocks.NewMockICuratorRepo(ctl)
 	service := NewCuratorService(repo)
 
 	id := 1

@@ -1,14 +1,4 @@
-package curator
-
-type Curator struct {
-	Id          int
-	ChatId      string
-	Name        string
-	Surname     string
-	PhoneNumber string
-}
-
-type Curators []*Curator
+package dto
 
 type CreateCurator struct {
 	ChatId      string

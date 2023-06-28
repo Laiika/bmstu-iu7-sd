@@ -1,12 +1,4 @@
-package shelter
-
-type Shelter struct {
-	Id     int
-	Street string
-	House  int
-}
-
-type Shelters []*Shelter
+package dto
 
 type CreateShelter struct {
 	Street string

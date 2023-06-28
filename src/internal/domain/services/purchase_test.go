@@ -1,9 +1,12 @@
-package purchase
+package services
 
 import (
 	"context"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
+	"sd/internal/domain/dto"
+	"sd/internal/domain/entities"
+	"sd/internal/domain/services/mocks"
 	"testing"
 	"time"
 )
@@ -11,11 +14,11 @@ import (
 func TestPurchaseService_GetById(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIPurchaseRepo(ctl)
+	repo := mocks.NewMockIPurchaseRepo(ctl)
 	service := NewPurchaseService(repo)
 
 	id := 11
-	expectedPurchase := &Purchase{
+	expectedPurchase := &entities.Purchase{
 		Id:        id,
 		Name:      "Royal Canin Sensible 33",
 		Frequency: "раз в 2 недели",
@@ -33,11 +36,11 @@ func TestPurchaseService_GetById(t *testing.T) {
 func TestPurchaseService_GetAll(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIPurchaseRepo(ctl)
+	repo := mocks.NewMockIPurchaseRepo(ctl)
 	service := NewPurchaseService(repo)
 
-	expectedPurchases := Purchases{
-		&Purchase{
+	expectedPurchases := entities.Purchases{
+		&entities.Purchase{
 			Id:        1,
 			Name:      "Royal Canin Sensible 33",
 			Frequency: "раз в 2 недели",
@@ -45,7 +48,7 @@ func TestPurchaseService_GetAll(t *testing.T) {
 			LastDate:  time.Now(),
 			AnimalId:  14,
 		},
-		&Purchase{
+		&entities.Purchase{
 			Id:        2,
 			Name:      "Royal Canin Sterilised в желе",
 			Frequency: "раз в 2 недели",
@@ -64,10 +67,10 @@ func TestPurchaseService_GetAll(t *testing.T) {
 func TestPurchaseService_Create(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIPurchaseRepo(ctl)
+	repo := mocks.NewMockIPurchaseRepo(ctl)
 	service := NewPurchaseService(repo)
 
-	dto := &CreatePurchase{
+	dto := &dto.CreatePurchase{
 		Name:      "Royal Canin Sensible 33",
 		Frequency: "раз в 2 недели",
 		Cost:      403,
@@ -75,55 +78,35 @@ func TestPurchaseService_Create(t *testing.T) {
 		AnimalId:  14,
 	}
 
-	expectedPurchase := &Purchase{
-		Id:        1,
-		Name:      "Royal Canin Sensible 33",
-		Frequency: "раз в 2 недели",
-		Cost:      403,
-		LastDate:  time.Now(),
-		AnimalId:  14,
-	}
-
-	repo.EXPECT().Create(gomock.Any(), dto).Return(expectedPurchase, nil)
-	purchase, err := service.Create(context.Background(), dto)
+	repo.EXPECT().Create(gomock.Any(), dto).Return(nil)
+	err := service.Create(context.Background(), dto)
 	assert.NoError(t, err)
-	assert.Equal(t, expectedPurchase, purchase)
 }
 
 func TestPurchaseService_Update(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIPurchaseRepo(ctl)
+	repo := mocks.NewMockIPurchaseRepo(ctl)
 	service := NewPurchaseService(repo)
 
-	dto := &UpdatePurchase{
+	dto := &dto.UpdatePurchase{
 		Name:      "Royal Canin Sensible 33",
 		Frequency: "раз в 2 недели",
 		Cost:      403,
 		LastDate:  time.Now(),
 		AnimalId:  14,
 	}
-
 	id := 1
-	expectedPurchase := &Purchase{
-		Id:        id,
-		Name:      "Royal Canin Sensible 33",
-		Frequency: "раз в 2 недели",
-		Cost:      403,
-		LastDate:  time.Now(),
-		AnimalId:  14,
-	}
 
-	repo.EXPECT().Update(gomock.Any(), id, dto).Return(expectedPurchase, nil)
-	purchase, err := service.Update(context.Background(), id, dto)
+	repo.EXPECT().Update(gomock.Any(), id, dto).Return(nil)
+	err := service.Update(context.Background(), id, dto)
 	assert.NoError(t, err)
-	assert.Equal(t, expectedPurchase, purchase)
 }
 
 func TestPurchaseService_Delete(t *testing.T) {
 	ctl := gomock.NewController(t)
 	defer ctl.Finish()
-	repo := NewMockIPurchaseRepo(ctl)
+	repo := mocks.NewMockIPurchaseRepo(ctl)
 	service := NewPurchaseService(repo)
 
 	id := 1
