@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  postgres:
+    container_name: "postgres-sd"
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=zhenya_z
+      - POSTGRES_DB=sd
+    ports:
+      - "5432:5432"
+
+  mongodb:
+    container_name: "mongodb-sd"
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadm
+      - MONGO_INITDB_ROOT_PASSWORD=mongoadm
+    ports:
+      - "27017:27017"
