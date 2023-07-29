@@ -1,0 +1,16 @@
+postgres:
+  username: zhenya_z
+  password: postgres
+  host: localhost
+  port: 5432
+  dbname: sd
+
+mongodb:
+  username: mongoadm
+  password: mongoadm
+  host: localhost
+  port: 27017
+  dbname: sd
+  auth_source: hz
+
+telegram_token: "6447329762:AAFAEPJuSoQFihyEBPvUGJgTdkn14_LdfKs"
