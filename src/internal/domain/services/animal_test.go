@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
-	"sd/internal/domain/dto"
 	"sd/internal/domain/entities"
 	"sd/internal/domain/services/mocks"
 	"testing"
@@ -111,7 +110,7 @@ func TestAnimalService_Create(t *testing.T) {
 	repo := mocks.NewMockIAnimalRepo(ctl)
 	service := NewAnimalService(repo)
 
-	dto := &dto.CreateAnimal{
+	animal := &entities.Animal{
 		Name:      "Бобик",
 		Age:       10,
 		Height:    3.4,
@@ -121,9 +120,11 @@ func TestAnimalService_Create(t *testing.T) {
 		Gender:    "мужской",
 	}
 
-	repo.EXPECT().Create(gomock.Any(), dto).Return(nil)
-	err := service.Create(context.Background(), dto)
+	id := 1
+	repo.EXPECT().Create(gomock.Any(), animal).Return(id, nil)
+	id2, err := service.Create(context.Background(), animal)
 	assert.NoError(t, err)
+	assert.Equal(t, id, id2)
 }
 
 func TestAnimalService_Update(t *testing.T) {
@@ -132,7 +133,8 @@ func TestAnimalService_Update(t *testing.T) {
 	repo := mocks.NewMockIAnimalRepo(ctl)
 	service := NewAnimalService(repo)
 
-	dto := &dto.UpdateAnimal{
+	animal := &entities.Animal{
+		Id:        1,
 		Name:      "Бобик",
 		Age:       10,
 		Height:    3.4,
@@ -141,10 +143,9 @@ func TestAnimalService_Update(t *testing.T) {
 		Type:      "собака",
 		Gender:    "мужской",
 	}
-	id := 1
 
-	repo.EXPECT().Update(gomock.Any(), id, dto).Return(nil)
-	err := service.Update(context.Background(), id, dto)
+	repo.EXPECT().Update(gomock.Any(), animal).Return(nil)
+	err := service.Update(context.Background(), animal)
 	assert.NoError(t, err)
 }
 

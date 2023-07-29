@@ -7,7 +7,6 @@ package mocks
 import (
 	context "context"
 	reflect "reflect"
-	dto "sd/internal/domain/dto"
 	entities "sd/internal/domain/entities"
 
 	gomock "github.com/golang/mock/gomock"
@@ -37,11 +36,12 @@ func (m *MockICuratorRepo) EXPECT() *MockICuratorRepoMockRecorder {
 }
 
 // Create mocks base method.
-func (m *MockICuratorRepo) Create(arg0 context.Context, arg1 *dto.CreateCurator) error {
+func (m *MockICuratorRepo) Create(arg0 context.Context, arg1 *entities.Curator) (int, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Create", arg0, arg1)
-	ret0, _ := ret[0].(error)
-	return ret0
+	ret0, _ := ret[0].(int)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
 }
 
 // Create indicates an expected call of Create.
@@ -79,6 +79,21 @@ func (mr *MockICuratorRepoMockRecorder) GetAll(arg0 interface{}) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAll", reflect.TypeOf((*MockICuratorRepo)(nil).GetAll), arg0)
 }
 
+// GetByChatId mocks base method.
+func (m *MockICuratorRepo) GetByChatId(arg0 context.Context, arg1 string) (*entities.Curator, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetByChatId", arg0, arg1)
+	ret0, _ := ret[0].(*entities.Curator)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetByChatId indicates an expected call of GetByChatId.
+func (mr *MockICuratorRepoMockRecorder) GetByChatId(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByChatId", reflect.TypeOf((*MockICuratorRepo)(nil).GetByChatId), arg0, arg1)
+}
+
 // GetById mocks base method.
 func (m *MockICuratorRepo) GetById(arg0 context.Context, arg1 int) (*entities.Curator, error) {
 	m.ctrl.T.Helper()
@@ -95,15 +110,15 @@ func (mr *MockICuratorRepoMockRecorder) GetById(arg0, arg1 interface{}) *gomock.
 }
 
 // Update mocks base method.
-func (m *MockICuratorRepo) Update(arg0 context.Context, arg1 int, arg2 *dto.UpdateCurator) error {
+func (m *MockICuratorRepo) Update(arg0 context.Context, arg1 *entities.Curator) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Update", arg0, arg1, arg2)
+	ret := m.ctrl.Call(m, "Update", arg0, arg1)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockICuratorRepoMockRecorder) Update(arg0, arg1, arg2 interface{}) *gomock.Call {
+func (mr *MockICuratorRepoMockRecorder) Update(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockICuratorRepo)(nil).Update), arg0, arg1, arg2)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockICuratorRepo)(nil).Update), arg0, arg1)
 }

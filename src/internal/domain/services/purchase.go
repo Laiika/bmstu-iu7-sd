@@ -2,15 +2,16 @@ package services
 
 import (
 	"context"
-	"sd/internal/domain/dto"
 	"sd/internal/domain/entities"
 )
+
+// mockgen -destination mocks/purchase_mock.go -package mocks . IPurchaseRepo
 
 type IPurchaseRepo interface {
 	GetById(ctx context.Context, id int) (*entities.Purchase, error)
 	GetAll(ctx context.Context) (entities.Purchases, error)
-	Create(ctx context.Context, dto *dto.CreatePurchase) error
-	Update(ctx context.Context, id int, dto *dto.UpdatePurchase) error
+	Create(ctx context.Context, purchase *entities.Purchase) (int, error)
+	Update(ctx context.Context, purchase *entities.Purchase) error
 	Delete(ctx context.Context, id int) error
 }
 
@@ -30,11 +31,19 @@ func (r *PurchaseService) GetById(ctx context.Context, id int) (*entities.Purcha
 func (r *PurchaseService) GetAll(ctx context.Context) (entities.Purchases, error) {
 	return r.repo.GetAll(ctx)
 }
-func (r *PurchaseService) Create(ctx context.Context, dto *dto.CreatePurchase) error {
-	return r.repo.Create(ctx, dto)
+func (r *PurchaseService) Create(ctx context.Context, purchase *entities.Purchase) (int, error) {
+	if err := purchase.IsValid(); err != nil {
+		return 0, err
+	}
+
+	return r.repo.Create(ctx, purchase)
 }
-func (r *PurchaseService) Update(ctx context.Context, id int, dto *dto.UpdatePurchase) error {
-	return r.repo.Update(ctx, id, dto)
+func (r *PurchaseService) Update(ctx context.Context, purchase *entities.Purchase) error {
+	if err := purchase.IsValid(); err != nil {
+		return err
+	}
+
+	return r.repo.Update(ctx, purchase)
 }
 func (r *PurchaseService) Delete(ctx context.Context, id int) error {
 	return r.repo.Delete(ctx, id)

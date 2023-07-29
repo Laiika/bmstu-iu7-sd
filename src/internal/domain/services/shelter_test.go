@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
-	"sd/internal/domain/dto"
 	"sd/internal/domain/entities"
 	"sd/internal/domain/services/mocks"
 	"testing"
@@ -60,14 +59,16 @@ func TestShelterService_Create(t *testing.T) {
 	repo := mocks.NewMockIShelterRepo(ctl)
 	service := NewShelterService(repo)
 
-	dto := &dto.CreateShelter{
+	shelter := &entities.Shelter{
 		Street: "Первомайская",
 		House:  10,
 	}
 
-	repo.EXPECT().Create(gomock.Any(), dto).Return(nil)
-	err := service.Create(context.Background(), dto)
+	id := 1
+	repo.EXPECT().Create(gomock.Any(), shelter).Return(id, nil)
+	id2, err := service.Create(context.Background(), shelter)
 	assert.NoError(t, err)
+	assert.Equal(t, id, id2)
 }
 
 func TestShelterService_Update(t *testing.T) {
@@ -76,14 +77,14 @@ func TestShelterService_Update(t *testing.T) {
 	repo := mocks.NewMockIShelterRepo(ctl)
 	service := NewShelterService(repo)
 
-	dto := &dto.UpdateShelter{
+	shelter := &entities.Shelter{
+		Id:     1,
 		Street: "Первомайская",
 		House:  10,
 	}
-	id := 1
 
-	repo.EXPECT().Update(gomock.Any(), id, dto).Return(nil)
-	err := service.Update(context.Background(), id, dto)
+	repo.EXPECT().Update(gomock.Any(), shelter).Return(nil)
+	err := service.Update(context.Background(), shelter)
 	assert.NoError(t, err)
 }
 

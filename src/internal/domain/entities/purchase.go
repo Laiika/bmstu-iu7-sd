@@ -1,6 +1,9 @@
 package entities
 
-import "time"
+import (
+	"sd/internal/apperrors"
+	"time"
+)
 
 type Purchase struct {
 	Id        int
@@ -12,3 +15,16 @@ type Purchase struct {
 }
 
 type Purchases []*Purchase
+
+func (p *Purchase) IsValid() error {
+	var err error
+
+	switch {
+	case p.Name == "":
+		err = apperrors.ErrInvalidName
+	case p.AnimalId <= 0:
+		err = apperrors.ErrInvalidReferenceId
+	}
+
+	return err
+}

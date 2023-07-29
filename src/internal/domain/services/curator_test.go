@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
-	"sd/internal/domain/dto"
 	"sd/internal/domain/entities"
 	"sd/internal/domain/services/mocks"
 	"testing"
@@ -27,6 +26,27 @@ func TestCuratorService_GetById(t *testing.T) {
 
 	repo.EXPECT().GetById(gomock.Any(), id).Return(expectedCurator, nil)
 	curator, err := service.GetById(context.Background(), id)
+	assert.NoError(t, err)
+	assert.Equal(t, expectedCurator, curator)
+}
+
+func TestCuratorService_GetByChatId(t *testing.T) {
+	ctl := gomock.NewController(t)
+	defer ctl.Finish()
+	repo := mocks.NewMockICuratorRepo(ctl)
+	service := NewCuratorService(repo)
+
+	chatId := "85085228"
+	expectedCurator := &entities.Curator{
+		Id:          11,
+		ChatId:      chatId,
+		Name:        "Арина",
+		Surname:     "Иванова",
+		PhoneNumber: "+79891143454",
+	}
+
+	repo.EXPECT().GetByChatId(gomock.Any(), chatId).Return(expectedCurator, nil)
+	curator, err := service.GetByChatId(context.Background(), chatId)
 	assert.NoError(t, err)
 	assert.Equal(t, expectedCurator, curator)
 }
@@ -66,16 +86,18 @@ func TestCuratorService_Create(t *testing.T) {
 	repo := mocks.NewMockICuratorRepo(ctl)
 	service := NewCuratorService(repo)
 
-	dto := &dto.CreateCurator{
+	curator := &entities.Curator{
 		ChatId:      "85085228",
 		Name:        "Арина",
 		Surname:     "Иванова",
 		PhoneNumber: "+79891143454",
 	}
 
-	repo.EXPECT().Create(gomock.Any(), dto).Return(nil)
-	err := service.Create(context.Background(), dto)
+	id := 1
+	repo.EXPECT().Create(gomock.Any(), curator).Return(id, nil)
+	id2, err := service.Create(context.Background(), curator)
 	assert.NoError(t, err)
+	assert.Equal(t, id, id2)
 }
 
 func TestCuratorService_Update(t *testing.T) {
@@ -84,16 +106,16 @@ func TestCuratorService_Update(t *testing.T) {
 	repo := mocks.NewMockICuratorRepo(ctl)
 	service := NewCuratorService(repo)
 
-	dto := &dto.UpdateCurator{
+	curator := &entities.Curator{
+		Id:          1,
 		ChatId:      "85085228",
 		Name:        "Арина",
 		Surname:     "Иванова",
 		PhoneNumber: "+79891143454",
 	}
-	id := 1
 
-	repo.EXPECT().Update(gomock.Any(), id, dto).Return(nil)
-	err := service.Update(context.Background(), id, dto)
+	repo.EXPECT().Update(gomock.Any(), curator).Return(nil)
+	err := service.Update(context.Background(), curator)
 	assert.NoError(t, err)
 }
 

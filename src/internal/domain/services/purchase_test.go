@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
-	"sd/internal/domain/dto"
 	"sd/internal/domain/entities"
 	"sd/internal/domain/services/mocks"
 	"testing"
@@ -70,7 +69,7 @@ func TestPurchaseService_Create(t *testing.T) {
 	repo := mocks.NewMockIPurchaseRepo(ctl)
 	service := NewPurchaseService(repo)
 
-	dto := &dto.CreatePurchase{
+	purchase := &entities.Purchase{
 		Name:      "Royal Canin Sensible 33",
 		Frequency: "раз в 2 недели",
 		Cost:      403,
@@ -78,9 +77,11 @@ func TestPurchaseService_Create(t *testing.T) {
 		AnimalId:  14,
 	}
 
-	repo.EXPECT().Create(gomock.Any(), dto).Return(nil)
-	err := service.Create(context.Background(), dto)
+	id := 1
+	repo.EXPECT().Create(gomock.Any(), purchase).Return(id, nil)
+	id2, err := service.Create(context.Background(), purchase)
 	assert.NoError(t, err)
+	assert.Equal(t, id, id2)
 }
 
 func TestPurchaseService_Update(t *testing.T) {
@@ -89,17 +90,17 @@ func TestPurchaseService_Update(t *testing.T) {
 	repo := mocks.NewMockIPurchaseRepo(ctl)
 	service := NewPurchaseService(repo)
 
-	dto := &dto.UpdatePurchase{
+	purchase := &entities.Purchase{
+		Id:        1,
 		Name:      "Royal Canin Sensible 33",
 		Frequency: "раз в 2 недели",
 		Cost:      403,
 		LastDate:  time.Now(),
 		AnimalId:  14,
 	}
-	id := 1
 
-	repo.EXPECT().Update(gomock.Any(), id, dto).Return(nil)
-	err := service.Update(context.Background(), id, dto)
+	repo.EXPECT().Update(gomock.Any(), purchase).Return(nil)
+	err := service.Update(context.Background(), purchase)
 	assert.NoError(t, err)
 }
 
