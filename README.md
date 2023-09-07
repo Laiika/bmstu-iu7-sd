@@ -65,16 +65,7 @@
 
 ![components](diagrams/UML-component.png)
 
-## UML диаграммы классов
+## UML диаграмма классов приложения 
 
-UML диаграмма сущностей системы: 
+![UML](diagrams/classes.drawio.png)
 
-![UML](diagrams/UML.png)
-
-UML диаграммы классов для двух отдельных компонентов - компонента доступа к данным и компонента с бизнес-логикой
-
-![BL](diagrams/BL.png)
-
----
-
-![BL](diagrams/BD.png)
