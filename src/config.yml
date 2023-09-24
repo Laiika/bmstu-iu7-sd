@@ -11,6 +11,6 @@ mongodb:
   host: localhost
   port: 27017
   dbname: sd
-  auth_source: hz
+  auth_source: admin
 
 telegram_token: "6447329762:AAFAEPJuSoQFihyEBPvUGJgTdkn14_LdfKs"
