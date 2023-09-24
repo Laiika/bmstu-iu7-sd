@@ -7,6 +7,7 @@ type Controller struct {
 	animalService   *services.AnimalService
 	shelterService  *services.ShelterService
 	purchaseService *services.PurchaseService
+	diseaseService  *services.DiseaseService
 }
 
 func NewController(
@@ -14,6 +15,7 @@ func NewController(
 	animalService *services.AnimalService,
 	shelterService *services.ShelterService,
 	purchaseService *services.PurchaseService,
+	diseaseService *services.DiseaseService,
 ) *Controller {
 
 	return &Controller{
@@ -21,5 +23,6 @@ func NewController(
 		animalService:   animalService,
 		shelterService:  shelterService,
 		purchaseService: purchaseService,
+		diseaseService:  diseaseService,
 	}
 }

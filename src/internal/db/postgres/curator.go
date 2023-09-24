@@ -87,11 +87,6 @@ func (r *CuratorRepo) GetAll(ctx context.Context) (entities.Curators, error) {
 }
 
 func (r *CuratorRepo) Create(ctx context.Context, curator *entities.Curator) (int, error) {
-	_, err := r.GetByChatId(ctx, curator.ChatId)
-	if err == nil {
-		return 0, apperrors.ErrEntityExists
-	}
-
 	q := `
 		INSERT INTO curators
 		    (chat_id, name, surname, phone_number) 
@@ -100,7 +95,7 @@ func (r *CuratorRepo) Create(ctx context.Context, curator *entities.Curator) (in
 		RETURNING id
 	`
 	var id int
-	err = r.client.QueryRow(ctx, q, curator.ChatId, curator.Name, curator.Surname, curator.PhoneNumber).Scan(&id)
+	err := r.client.QueryRow(ctx, q, curator.ChatId, curator.Name, curator.Surname, curator.PhoneNumber).Scan(&id)
 	if err != nil {
 		return 0, pkgErrors.WithMessage(apperrors.ErrInternal, err.Error())
 	}

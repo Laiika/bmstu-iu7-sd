@@ -6,11 +6,11 @@ import (
 )
 
 type Curator struct {
-	Id          int
-	ChatId      string
-	Name        string
-	Surname     string
-	PhoneNumber string
+	Id          int    `bson:"_id,omitempty"`
+	ChatId      string `bson:"chat_id"`
+	Name        string `bson:"name"`
+	Surname     string `bson:"surname"`
+	PhoneNumber string `bson:"phone_number"`
 }
 
 type Curators []*Curator

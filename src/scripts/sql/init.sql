@@ -49,3 +49,15 @@ CREATE TABLE IF NOT EXISTS curators_animals
     FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE,
     FOREIGN KEY (curator_id) REFERENCES curators(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS diseases
+(
+    id         INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    diagnosis  TEXT NOT NULL CHECK (diagnosis != ''),
+    symptoms   TEXT NOT NULL,
+    cause      TEXT,
+    is_chronic BOOLEAN NOT NULL,
+    animal_id  INT NOT NULL,
+
+    FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
+);

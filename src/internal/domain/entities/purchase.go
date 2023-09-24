@@ -6,12 +6,12 @@ import (
 )
 
 type Purchase struct {
-	Id        int
-	Name      string
-	Frequency string
-	Cost      float64
-	LastDate  time.Time
-	AnimalId  int
+	Id        int       `bson:"_id,omitempty"`
+	Name      string    `bson:"name"`
+	Frequency string    `bson:"frequency"`
+	Cost      float64   `bson:"cost"`
+	LastDate  time.Time `bson:"last_date"`
+	AnimalId  int       `bson:"animal_id"`
 }
 
 type Purchases []*Purchase

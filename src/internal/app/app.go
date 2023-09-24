@@ -12,6 +12,7 @@ import (
 	"sd/pkg/client/postgresql"
 	"sd/pkg/logger"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -20,11 +21,6 @@ var keyboard = tgbotapi.NewReplyKeyboard(
 		tgbotapi.NewKeyboardButton("Зарегестрироваться"),
 		tgbotapi.NewKeyboardButton("Просмотреть данные о себе"),
 		tgbotapi.NewKeyboardButton("Добавить закупку"),
-	),
-	tgbotapi.NewKeyboardButtonRow(
-		tgbotapi.NewKeyboardButton("Добавить животное"),
-		tgbotapi.NewKeyboardButton("Добавить животное к себе"),
-		tgbotapi.NewKeyboardButton("Перестать быть куратором животного"),
 	),
 	tgbotapi.NewKeyboardButtonRow(
 		tgbotapi.NewKeyboardButton("Посмотреть сведения о животном"),
@@ -36,9 +32,14 @@ var keyboard = tgbotapi.NewReplyKeyboard(
 		tgbotapi.NewKeyboardButton("Посмотреть сведения о приюте"),
 		tgbotapi.NewKeyboardButton("Посмотреть сведения о закупке"),
 	),
+	tgbotapi.NewKeyboardButtonRow(
+		tgbotapi.NewKeyboardButton("Добавить животное"),
+		tgbotapi.NewKeyboardButton("Посмотреть заболевания животного"),
+		tgbotapi.NewKeyboardButton("Добавить заболевание"),
+	),
 )
 
-func singUp(chatId int64, controller *controllers.Controller, data []string) string {
+func signUp(chatId int64, controller *controllers.Controller, data []string) string {
 	newCurator := &entities.Curator{
 		ChatId:      strconv.FormatInt(chatId, 10),
 		Name:        data[0],
@@ -96,6 +97,28 @@ func addPurchase(controller *controllers.Controller, data []string) string {
 	return fmt.Sprintf("Закупка добавлена, id: %d", id)
 }
 
+func addDisease(controller *controllers.Controller, data []string) string {
+	isChronic := false
+	if data[3] == "да" {
+		isChronic = true
+	}
+	anId, _ := strconv.Atoi(data[4])
+
+	newDisease := &entities.Disease{
+		Diagnosis: data[0],
+		Symptoms:  data[1],
+		Cause:     data[2],
+		IsChronic: isChronic,
+		AnimalId:  anId,
+	}
+	id, err := controller.AddDisease(context.Background(), newDisease)
+	if err != nil {
+		return fmt.Sprintf("Ошибка: %s", err.Error())
+	}
+
+	return fmt.Sprintf("Заболевание добавлено, id: %d", id)
+}
+
 func getInfoAboutPurchase(controller *controllers.Controller, data []string) string {
 	id, _ := strconv.Atoi(data[0])
 
@@ -142,6 +165,27 @@ func getInfoAboutCurator(chatId int64, controller *controllers.Controller) strin
 		curator.Name, curator.Surname, curator.PhoneNumber)
 }
 
+func printAnimalDiseases(controller *controllers.Controller, data []string) string {
+	id, _ := strconv.Atoi(data[0])
+
+	diseases, err := controller.GetAllAnimalDiseases(context.Background(), id)
+	if err != nil {
+		return fmt.Sprintf("Ошибка: %s", err.Error())
+	}
+
+	var reply strings.Builder
+	reply.WriteString(fmt.Sprintf("Найдено %d\n\n", len(diseases)))
+	for i := range diseases {
+		isChronic := "нет"
+		if diseases[i].IsChronic {
+			isChronic = "да"
+		}
+		reply.WriteString(fmt.Sprintf("id: %d\nДиагноз: %s \nСимптомы: %s \nПричина: %s \nХроническое: %s \nid животного: %d\n\n",
+			diseases[i].Id, diseases[i].Diagnosis, diseases[i].Symptoms, diseases[i].Cause, isChronic, diseases[i].AnimalId))
+	}
+	return reply.String()
+}
+
 func printCrtrAnimals(chatId int64, controller *controllers.Controller) string {
 	curator, err := controller.GetCuratorByChatId(context.Background(), strconv.FormatInt(chatId, 10))
 	if err != nil {
@@ -153,12 +197,13 @@ func printCrtrAnimals(chatId int64, controller *controllers.Controller) string {
 		return fmt.Sprintf("Ошибка: %s", err.Error())
 	}
 
-	reply := fmt.Sprintf("Найдено %d\n\n", len(animals))
+	var reply strings.Builder
+	reply.WriteString(fmt.Sprintf("Найдено %d\n\n", len(animals)))
 	for i := range animals {
-		reply += fmt.Sprintf("id: %d\nИмя: %s \nВозраст: %d \nРост: %0.3f \nВес: %0.3f \nid приюта: %d \nтип: %s \nпол: %s\n\n",
-			animals[i].Id, animals[i].Name, animals[i].Age, animals[i].Height, animals[i].Weight, animals[i].ShelterId, animals[i].Type, animals[i].Gender)
+		reply.WriteString(fmt.Sprintf("id: %d\nИмя: %s \nВозраст: %d \nРост: %0.3f \nВес: %0.3f \nid приюта: %d \nтип: %s \nпол: %s\n\n",
+			animals[i].Id, animals[i].Name, animals[i].Age, animals[i].Height, animals[i].Weight, animals[i].ShelterId, animals[i].Type, animals[i].Gender))
 	}
-	return reply
+	return reply.String()
 }
 
 func printAllAnimals(controller *controllers.Controller) string {
@@ -167,12 +212,13 @@ func printAllAnimals(controller *controllers.Controller) string {
 		return fmt.Sprintf("Ошибка: %s", err.Error())
 	}
 
-	reply := fmt.Sprintf("Найдено %d\n\n", len(animals))
+	var reply strings.Builder
+	reply.WriteString(fmt.Sprintf("Найдено %d\n\n", len(animals)))
 	for i := range animals {
-		reply += fmt.Sprintf("id: %d\nИмя: %s \nВозраст: %d \nРост: %0.3f \nВес: %0.3f \nid приюта: %d \nтип: %s \nпол: %s\n\n",
-			animals[i].Id, animals[i].Name, animals[i].Age, animals[i].Height, animals[i].Weight, animals[i].ShelterId, animals[i].Type, animals[i].Gender)
+		reply.WriteString(fmt.Sprintf("id: %d\nИмя: %s \nВозраст: %d \nРост: %0.3f \nВес: %0.3f \nid приюта: %d \nтип: %s \nпол: %s\n\n",
+			animals[i].Id, animals[i].Name, animals[i].Age, animals[i].Height, animals[i].Weight, animals[i].ShelterId, animals[i].Type, animals[i].Gender))
 	}
-	return reply
+	return reply.String()
 }
 
 func printAllShelters(controller *controllers.Controller) string {
@@ -181,12 +227,13 @@ func printAllShelters(controller *controllers.Controller) string {
 		return fmt.Sprintf("Ошибка: %s", err.Error())
 	}
 
-	reply := fmt.Sprintf("Найдено %d\n\n", len(shelters))
+	var reply strings.Builder
+	reply.WriteString(fmt.Sprintf("Найдено %d\n\n", len(shelters)))
 	for i := range shelters {
-		reply += fmt.Sprintf("id: %d\nУлица: %s \nДом: %d\n\n",
-			shelters[i].Id, shelters[i].Street, shelters[i].House)
+		reply.WriteString(fmt.Sprintf("id: %d\nУлица: %s \nДом: %d\n\n",
+			shelters[i].Id, shelters[i].Street, shelters[i].House))
 	}
-	return reply
+	return reply.String()
 }
 
 func runCommand(chatId int64, command string, controller *controllers.Controller, data []string) string {
@@ -194,7 +241,7 @@ func runCommand(chatId int64, command string, controller *controllers.Controller
 
 	switch command {
 	case "Зарегестрироваться":
-		result = singUp(chatId, controller, data)
+		result = signUp(chatId, controller, data)
 	case "Добавить животное":
 		result = addAnimal(controller, data)
 	case "Добавить закупку":
@@ -205,12 +252,16 @@ func runCommand(chatId int64, command string, controller *controllers.Controller
 		result = getInfoAboutAnimal(controller, data)
 	case "Посмотреть сведения о приюте":
 		result = getInfoAboutShelter(controller, data)
+	case "Добавить заболевание":
+		result = addDisease(controller, data)
+	case "Посмотреть заболевания животного":
+		result = printAnimalDiseases(controller, data)
 	}
 
 	return result
 }
 
-func singUpMessages() []string {
+func signUpMessages() []string {
 	var ms = []string{
 		"Введите имя",
 		"Введите фамилию",
@@ -250,6 +301,17 @@ func addPurchaseMessages() []string {
 	return ms
 }
 
+func addDiseaseMessages() []string {
+	var ms = []string{
+		"Введите диагноз",
+		"Введите симптомы",
+		"Введите причину заболевания",
+		"Введите, является ли заболевание хроническим (да/нет)",
+		"Введите id животного",
+	}
+	return ms
+}
+
 func handleUpdates(controller *controllers.Controller, updates tgbotapi.UpdatesChannel, bot *tgbotapi.BotAPI, log *logger.Logger) {
 	var command string
 	var ms []string
@@ -280,7 +342,7 @@ func handleUpdates(controller *controllers.Controller, updates tgbotapi.UpdatesC
 			switch update.Message.Text {
 			case "Зарегестрироваться":
 				command = update.Message.Text
-				ms = singUpMessages()
+				ms = signUpMessages()
 				msg.Text = ms[num]
 				num = 1
 			case "Просмотреть данные о себе":
@@ -290,10 +352,6 @@ func handleUpdates(controller *controllers.Controller, updates tgbotapi.UpdatesC
 				ms = addAnimalMessages()
 				msg.Text = ms[num]
 				num = 1
-			case "Добавить животное к себе":
-
-			case "Перестать быть куратором животного":
-
 			case "Посмотреть сведения о животном":
 				command = update.Message.Text
 				ms = getInfoAboutMessages()
@@ -318,6 +376,16 @@ func handleUpdates(controller *controllers.Controller, updates tgbotapi.UpdatesC
 			case "Добавить закупку":
 				command = update.Message.Text
 				ms = addPurchaseMessages()
+				msg.Text = ms[num]
+				num = 1
+			case "Добавить заболевание":
+				command = update.Message.Text
+				ms = addDiseaseMessages()
+				msg.Text = ms[num]
+				num = 1
+			case "Посмотреть заболевания животного":
+				command = update.Message.Text
+				ms = getInfoAboutMessages()
 				msg.Text = ms[num]
 				num = 1
 			default:
@@ -369,6 +437,9 @@ func Run(cfg *config.Config, log *logger.Logger) {
 	purchaseRepo := postgres.NewPurchaseRepo(client)
 	purchaseService := services.NewPurchaseService(purchaseRepo)
 
-	controller := controllers.NewController(curatorService, animalService, shelterService, purchaseService)
+	diseaseRepo := postgres.NewDiseaseRepo(client)
+	diseaseService := services.NewDiseaseService(diseaseRepo)
+
+	controller := controllers.NewController(curatorService, animalService, shelterService, purchaseService, diseaseService)
 	startBot(controller, cfg, log)
 }

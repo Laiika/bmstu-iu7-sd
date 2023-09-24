@@ -1,6 +1,10 @@
 build:
-	go build ./cmd/main.go
+	go build ./cmd/app/main.go
 	./main.exe
+
+cli:
+	go build -o cli.exe ./cmd/cli/main.go
+	./cli.exe
 
 integration-tests:
 	go test ./tests/integrational -c -o tests.exe

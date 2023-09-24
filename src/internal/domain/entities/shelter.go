@@ -3,9 +3,9 @@ package entities
 import "sd/internal/apperrors"
 
 type Shelter struct {
-	Id     int
-	Street string
-	House  int
+	Id     int    `bson:"_id,omitempty"`
+	Street string `bson:"street"`
+	House  int    `bson:"house"`
 }
 
 type Shelters []*Shelter

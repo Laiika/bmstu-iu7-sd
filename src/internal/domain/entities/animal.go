@@ -6,14 +6,14 @@ import (
 )
 
 type Animal struct {
-	Id        int
-	Name      string
-	Age       int
-	Height    float64
-	Weight    float64
-	ShelterId int
-	Type      string
-	Gender    string
+	Id        int     `bson:"_id,omitempty"`
+	Name      string  `bson:"name"`
+	Age       int     `bson:"age"`
+	Height    float64 `bson:"height"`
+	Weight    float64 `bson:"weight"`
+	ShelterId int     `bson:"shelter_id"`
+	Type      string  `bson:"type"`
+	Gender    string  `bson:"gender"`
 }
 
 type Animals []*Animal

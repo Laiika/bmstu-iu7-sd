@@ -16,7 +16,9 @@ var (
 	ErrInvalidStreet      = errors.New("невалидная улица")
 	ErrInvalidHouseNumber = errors.New("невалидный номер дома")
 
-	ErrEntityExists   = errors.New("такая сущность уже существует")
+	ErrInvalidDiagnosis = errors.New("невалидный диагноз")
+	ErrInvalidSymptoms  = errors.New("невалидные симптомы")
+
 	ErrInternal       = errors.New("внутренняя ошибка базы данных")
 	ErrEntityNotFound = errors.New("сущность не найдена")
 )
